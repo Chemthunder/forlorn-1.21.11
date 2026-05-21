@@ -7,6 +7,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.storage.ReadView;
 import net.minecraft.storage.WriteView;
+import org.jetbrains.annotations.Nullable;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.ComponentRegistry;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
@@ -23,7 +24,7 @@ public class CultistComponent implements AutoSyncedComponent {
     private final PlayerEntity player;
 
     private boolean state = false;
-    private Cult cult = Cult.EMPTY;
+    private @Nullable Cult cult = Cult.EMPTY;
 
     public CultistComponent(PlayerEntity player) {
         this.player = player;
