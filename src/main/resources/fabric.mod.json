@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "forlorn",
+  "version": "${version}",
+  "name": "Forlorn",
+  "description": "All about cults!",
+  "authors": [
+    "Chemthunder"
+  ],
+  "contributors": [
+    "AcoYT - Assets"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/forlorn/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.peak.forlorn.impl.Forlorn"
+    ],
+    "fabric-datagen": [
+      "com.peak.forlorn.data.ForlornDataGen"
+    ],
+    "cardinal-components": [
+      "com.peak.forlorn.impl.cca.ForlornCCA"
+    ]
+  },
+  "mixins": [
+    "forlorn.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+
+  "custom": {
+    "cardinal-components": [
+      "forlorn:cultist"
+    ]
+  }
+}
