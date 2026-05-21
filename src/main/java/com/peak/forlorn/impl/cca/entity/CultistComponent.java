@@ -15,7 +15,11 @@ import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
  * @author Chemthunder
  */
 public class CultistComponent implements AutoSyncedComponent {
-    public static final ComponentKey<CultistComponent> KEY = ComponentRegistry.getOrCreate(Forlorn.id("cultist"), CultistComponent.class);
+    public static final ComponentKey<CultistComponent> KEY = ComponentRegistry.getOrCreate(
+            Forlorn.id("cultist"),
+            CultistComponent.class
+    );
+
     private final PlayerEntity player;
 
     private boolean state = false;
@@ -32,11 +36,15 @@ public class CultistComponent implements AutoSyncedComponent {
     public void readData(ReadView nbt) {
         this.state = nbt.getBoolean("State", false);
 
-
+        this.cult = nbt.read("Cult", Cult.CODEC).orElse(null);
     }
 
     public void writeData(WriteView nbt) {
         nbt.putBoolean("State", state);
+
+        if (this.cult != null) {
+            nbt.put("Cult", Cult.CODEC, this.cult);
+        }
     }
 
     public boolean isState() {
@@ -45,6 +53,15 @@ public class CultistComponent implements AutoSyncedComponent {
 
     public void setState(boolean state) {
         this.state = state;
+        this.sync();
+    }
+
+    public Cult getCult() {
+        return this.cult;
+    }
+
+    public void setCult(Cult cult) {
+        this.cult = cult;
         this.sync();
     }
 }
